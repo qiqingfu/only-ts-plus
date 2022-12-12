@@ -2,6 +2,10 @@ export type M = { [key: string]: any };
 
 export type Key = { key: string; alias: string | null };
 
+function isPlainObject(obj: object) {
+  return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
 function getValue(obj: M, key: string): any {
   if (key.indexOf('.') === -1) {
     return obj[key];
@@ -43,9 +47,14 @@ function setValueToAlias(alias: string, value: any): M {
 
 export function deepMerge(to: M, from: M): M {
   let result: M = { ...to };
-
   for (const key in from) {
-    if (key in to) result[key] = deepMerge(to[key], from[key]);
+    if (key in to) {
+        if (isPlainObject(to[key]) && isPlainObject(from[key])) {
+            result[key] = deepMerge(to[key], from[key]);
+        } else {
+            result[key] = from[key]
+        }
+    }
     else result = { ...to, ...from };
   }
 
@@ -76,3 +85,10 @@ export function onlyToReq(req: Request, keys: string[] | string): object {
 
   return only(body, keys);
 }
+
+const user = {
+  username: 'xiaoming',
+  age: '26',
+};
+
+const result = only(user, ['username as name', 'age as name']);

@@ -248,3 +248,14 @@ test(`testing false values too`, () => {
 
   expect(theCallOnly).toEqual(expected)
 })
+
+test(`testing output object with the same name attribute`, () => {
+  const user = {
+    username: 'Jack',
+    age: 26
+  }
+  expect(only(user, [
+    'username as name',
+    'age as name'
+  ])).toEqual({ name: 26 })
+})
