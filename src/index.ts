@@ -85,10 +85,3 @@ export function onlyToReq(req: Request, keys: string[] | string): object {
 
   return only(body, keys);
 }
-
-const user = {
-  username: 'xiaoming',
-  age: '26',
-};
-
-const result = only(user, ['username as name', 'age as name']);
