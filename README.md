@@ -1,10 +1,10 @@
-# only-ts
-[OnlyTS](https://github.com/DaviMendesDev/only-ts) is a typescript package based on [only](https://github.com/tj/node-only) project. It will receive an array or object and return only the expected values, some more examples are below.
+# only-ts-plus
+[OnlyTsPlus](https://github.com/qiqingfu/only-ts) is a typescript package based on [only](https://github.com/DaviMendesDev/only-ts) project. It will receive an array or object and return only the expected values, some more examples are below.
 
 ## Installation
 run the following command on your npm project.
 
-    $ npm i only-ts
+    $ npm i only-ts-plus
 
 ## Getting Started
 Let's imagine that we have a form-body-data-like this (like `req.body`) :
@@ -25,7 +25,7 @@ const personData: FormData = {
 But we don't want that a user can sets up your own JWToken, so we just use only to extract what we want from this data, like that:
 
 ```ts
-import only from 'only-ts'
+import only from 'only-ts-plus'
 
 // ...
 
